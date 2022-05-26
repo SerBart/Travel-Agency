@@ -1,14 +1,18 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
+@Table(name = "CARS")
 public class CarEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private Long id;
+    private int id;
 
     public int getPrice() {
         return price;
@@ -17,6 +21,9 @@ public class CarEntity {
     public CarEntity setPrice(int price) {
         this.price = price;
         return this;
+    }
+
+    CarEntity() {
     }
 
     public Standard getStandard() {
@@ -65,11 +72,11 @@ public class CarEntity {
 
     private boolean isAvaible;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

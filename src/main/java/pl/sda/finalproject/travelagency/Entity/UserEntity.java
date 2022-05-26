@@ -1,14 +1,19 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
+@Table(name = "USERS")
+
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private Long id;
+    private int id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -25,11 +30,14 @@ public class UserEntity {
     @Column(name = "phone_number")
     private double phoneNumber;
 
-    public Long getId() {
+    UserEntity() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -1,14 +1,18 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 @Entity
+@Table(name = "HOTEL_ROOMS")
 public class HotelRoomEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private Long id;
+    private int id;
 
     @Column(length = 2)
     private int roomCapacity;
@@ -24,6 +28,9 @@ public class HotelRoomEntity {
 
     @ManyToOne
     private HotelsEntity  hotelsEntity;
+
+    HotelRoomEntity() {
+    }
 
     public int getRoomCapacity() {
         return roomCapacity;
@@ -79,11 +86,11 @@ public class HotelRoomEntity {
         return this;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

@@ -1,15 +1,19 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "CAR_RENTALS")
 public class CarRentalEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private Long id;
+    private int id;
 
 
     private int rentalLength;
@@ -17,12 +21,14 @@ public class CarRentalEntity {
     private Date dateOfRental;
     private Date dateOfBringingBack;
 
+    CarRentalEntity() {
+    }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

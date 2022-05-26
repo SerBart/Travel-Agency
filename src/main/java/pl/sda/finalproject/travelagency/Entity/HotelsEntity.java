@@ -1,14 +1,19 @@
 package pl.sda.finalproject.travelagency.Entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "HOTELS")
 public class HotelsEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private Long id;
+    private int id;
 
 
     private String adress;
@@ -22,8 +27,11 @@ public class HotelsEntity {
 
     private Standard standard;
 
-    public HashSet<HotelRoomEntity> getHotelRoomEntityHashSet() {
+    public Set<HotelRoomEntity> getHotelRoomEntityHashSet() {
         return hotelRoomEntityHashSet;
+    }
+
+    public HotelsEntity() {
     }
 
     public HotelsEntity setHotelRoomEntityHashSet(HashSet<HotelRoomEntity> hotelRoomEntityHashSet) {
@@ -31,11 +39,11 @@ public class HotelsEntity {
         return this;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -1,27 +1,39 @@
 package pl.sda.finalproject.travelagency.Entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 
 @Entity
+@Table(name = "TRIPS")
 public class TripEntity {
+
+
 
     private Date beginingDate;
     private Date endDate;
     private int tripLength;
     private int tripCost;
 
+    @OneToMany
+    private HashSet<HotelsEntity> hotelsEntities;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private Long id;
+    private int id;
 
-    public Long getId() {
+    public TripEntity() {
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

@@ -12,11 +12,11 @@ public class MenuController {
     private MenuService menuService;
 
 
-    @GetMapping("/homemenu")
+    @GetMapping("/index")
     public String menu(Model model) {
         model.addAttribute("menu",menuService.getMenu());
 
-        return "homemenu.html";
+        return "index.html";
     }
 
 }

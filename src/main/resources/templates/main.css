@@ -1,0 +1,38 @@
+body
+{
+    background-color: #06b3f7;
+    color: #130101;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+}
+
+h1
+{
+    font-size: 36px;
+    font-weight: 400;
+    color: #C0D06F;
+    margin: 20px;
+}
+
+.travelHomeSide
+{
+    text-align: center;
+}
+
+.travelHomeSide img
+{
+    width: 100%;
+    height: auto;
+}
+
+.travelHomeSide p
+{
+    margin-bottom: 30px;
+}
+
+.travelHomeSide figcaption
+{
+    margin-top: 8px;
+}
+
+

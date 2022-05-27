@@ -3,8 +3,7 @@ package pl.sda.finalproject.travelagency.Entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "HOTELS")
@@ -15,28 +14,14 @@ public class HotelsEntity {
     @Column(name = "id", nullable = false)
     private int id;
 
-
     private String adress;
 
     private String country;
 
     private String city;
 
-    @OneToMany()
-    private HashSet<HotelRoomEntity> hotelRoomEntityHashSet;
-
     private Standard standard;
-
-    public Set<HotelRoomEntity> getHotelRoomEntityHashSet() {
-        return hotelRoomEntityHashSet;
-    }
-
     public HotelsEntity() {
-    }
-
-    public HotelsEntity setHotelRoomEntityHashSet(HashSet<HotelRoomEntity> hotelRoomEntityHashSet) {
-        this.hotelRoomEntityHashSet = hotelRoomEntityHashSet;
-        return this;
     }
 
     public int getId() {

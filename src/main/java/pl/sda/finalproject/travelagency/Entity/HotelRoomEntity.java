@@ -26,10 +26,14 @@ public class HotelRoomEntity {
 
     private boolean isAvaible;
 
-    @ManyToOne
-    private HotelsEntity  hotelsEntity;
+//    @ManyToOne
+//    private HotelsEntity  hotelsEntity;
 
-    HotelRoomEntity() {
+//    HotelRoomEntity() {
+//    }
+
+    public HotelRoomEntity() {
+
     }
 
     public int getRoomCapacity() {
@@ -77,14 +81,14 @@ public class HotelRoomEntity {
         return this;
     }
 
-    public HotelsEntity getHotelsEntity() {
-        return hotelsEntity;
-    }
-
-    public HotelRoomEntity setHotelsEntity(HotelsEntity hotelsEntity) {
-        this.hotelsEntity = hotelsEntity;
-        return this;
-    }
+//    public HotelsEntity getHotelsEntity() {
+//        return hotelsEntity;
+//    }
+//
+//    public HotelRoomEntity setHotelsEntity(HotelsEntity hotelsEntity) {
+//        this.hotelsEntity = hotelsEntity;
+//        return this;
+//    }
 
     public int getId() {
         return id;

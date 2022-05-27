@@ -11,14 +11,13 @@ import java.util.HashSet;
 public class TripEntity {
 
 
-
     private Date beginingDate;
     private Date endDate;
     private int tripLength;
     private int tripCost;
 
-    @OneToMany
-    private HashSet<HotelsEntity> hotelsEntities;
+//    @OneToMany
+//    private HashSet<HotelsEntity> hotelsEntities;
 
     @Id
     @GeneratedValue(generator = "increment")

@@ -4,20 +4,11 @@ import java.util.Date;
 
 public class CarRentalDto {
 
-    private int rentalLength;
+
     private int cost;
     private Date dateOfRental;
     private Date dateOfBringingBack;
 
-
-    public int getRentalLength() {
-        return rentalLength;
-    }
-
-    public CarRentalDto setRentalLength(int rentalLength) {
-        this.rentalLength = rentalLength;
-        return this;
-    }
 
 
     public int getCost() {

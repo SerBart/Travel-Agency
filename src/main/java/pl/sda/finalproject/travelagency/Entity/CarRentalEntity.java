@@ -1,11 +1,17 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
 
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "CAR_RENTALS")
 public class CarRentalEntity {
@@ -16,13 +22,10 @@ public class CarRentalEntity {
     private int id;
 
 
-    private int rentalLength;
     private int cost;
     private Date dateOfRental;
     private Date dateOfBringingBack;
 
-    CarRentalEntity() {
-    }
 
     public int getId() {
         return id;

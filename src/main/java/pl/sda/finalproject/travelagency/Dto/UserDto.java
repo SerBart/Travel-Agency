@@ -1,16 +1,17 @@
 package pl.sda.finalproject.travelagency.Dto;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class UserDto {
     private String UUID;
     private String firstName;
     private String secondName;
-    private int age;
     private double priceReduction;
     private String userName;
     private String email;
     private double phoneNumber;
+    private Date dateOfBirth;
 
     public UserDto() {
     }
@@ -20,20 +21,20 @@ public class UserDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserDto userDto = (UserDto) o;
-        return age == userDto.age && Double.compare(userDto.priceReduction, priceReduction) == 0 && Double.compare(userDto.phoneNumber, phoneNumber) == 0 && UUID.equals(userDto.UUID) && firstName.equals(userDto.firstName) && secondName.equals(userDto.secondName) && userName.equals(userDto.userName) && email.equals(userDto.email);
+        return dateOfBirth == userDto.dateOfBirth && Double.compare(userDto.priceReduction, priceReduction) == 0 && Double.compare(userDto.phoneNumber, phoneNumber) == 0 && UUID.equals(userDto.UUID) && firstName.equals(userDto.firstName) && secondName.equals(userDto.secondName) && userName.equals(userDto.userName) && email.equals(userDto.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(UUID, firstName, secondName, age, priceReduction, userName, email, phoneNumber);
+        return Objects.hash(UUID, firstName, secondName, dateOfBirth, priceReduction, userName, email, phoneNumber);
     }
 
-    public UserDto(String UUID, String firstName, String secondName, int age, double priceReduction, String userName,
+    public UserDto(String UUID, String firstName, String secondName, Date dateOfBirth, double priceReduction, String userName,
                    String email, double phoneNumber) {
         this.UUID = UUID;
         this.firstName = firstName;
         this.secondName = secondName;
-        this.age = age;
+        this.dateOfBirth = dateOfBirth;
         this.priceReduction = priceReduction;
         this.userName = userName;
         this.email = email;
@@ -67,12 +68,12 @@ public class UserDto {
         return this;
     }
 
-    public int getAge() {
-        return age;
+    public Date getDateOfBirth() {
+        return dateOfBirth;
     }
 
-    public UserDto setAge(int age) {
-        this.age = age;
+    public UserDto setDateOfBirth(Date age) {
+        this.dateOfBirth = dateOfBirth;
         return this;
     }
 

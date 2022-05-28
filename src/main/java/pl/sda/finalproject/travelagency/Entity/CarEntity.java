@@ -1,18 +1,39 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+@Getter
+@Setter
 
 @Entity
 @Table(name = "CARS")
 public class CarEntity {
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
     private int id;
+
+    @Column(name = "model")
+    private String model;
+
+    @Column(name = "brand")
+    private String brand;
+
+    @Column(name = "year_of_production")
+    private String yearOfProduction;
+
+    @Column(name = "howManyPeople")
+    private int howManyPeople;
+
+    @Column(name = "power")
+    private int power;
 
     public int getPrice() {
         return price;
@@ -23,7 +44,7 @@ public class CarEntity {
         return this;
     }
 
-    CarEntity() {
+    protected CarEntity() {
     }
 
     public Standard getStandard() {

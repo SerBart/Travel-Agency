@@ -1,0 +1,1 @@
+insert into USERS (USER_NAME) values ('bartek');

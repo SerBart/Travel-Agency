@@ -1,36 +1,31 @@
 package pl.sda.finalproject.travelagency.Entity;
 
-
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Date;
+import java.util.HashSet;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "TRIPS")
+public class TripEntity {
 
-public class UserEntity {
+
+    private Date beginingDate;
+    private Date endDate;
+    private int tripLength;
+    private int tripCost;
+
+//    @OneToMany
+//    private HashSet<HotelsEntity> hotelsEntities;
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "second_name")
-    private String secondName;
-
-    @Column(name = "user_name")
-    private String userName;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "phone_number")
-    private double phoneNumber;
-
-    UserEntity() {
+    public TripEntity() {
     }
 
     public int getId() {
@@ -40,6 +35,4 @@ public class UserEntity {
     public void setId(int id) {
         this.id = id;
     }
-
-
 }

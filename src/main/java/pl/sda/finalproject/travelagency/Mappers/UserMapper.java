@@ -15,7 +15,7 @@ public class UserMapper {
                 .setPhoneNumber(userEntity.getPhoneNumber())
                 .setSecondName(userEntity.getSecondName())
                 .setPriceReduction(userEntity.getPriceReduction())
-                .setUUID(userEntity.getUuid);
+                .setUUID(userEntity.getUuid());
     }
 
     public static List<UserDto> map(List<UserEntity> users){

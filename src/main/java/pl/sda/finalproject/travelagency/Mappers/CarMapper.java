@@ -10,6 +10,7 @@ public class CarMapper {
 
     public static CarDto map(CarEntity carEntity){
         return new CarDto()
+                .setUuid(carEntity.getUuid())
                 .setBrand(carEntity.getBrand())
                 .setModel(carEntity.getModel())
                 .setPower(carEntity.getPower())

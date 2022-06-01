@@ -12,10 +12,13 @@ public class HotelRoomEntity {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
 
     @Column(length = 2)
     private int roomCapacity;
+
+    private String uuid;
+
 
     @Column(length = 5)
     private double price;
@@ -26,7 +29,16 @@ public class HotelRoomEntity {
 
     private boolean isAvaible;
 
-//    @ManyToOne
+    public String getUuid() {
+        return uuid;
+    }
+
+    public HotelRoomEntity setUuid(String uuid) {
+        this.uuid = uuid;
+        return this;
+    }
+
+    //    @ManyToOne
 //    private HotelsEntity  hotelsEntity;
 
 //    HotelRoomEntity() {
@@ -90,11 +102,11 @@ public class HotelRoomEntity {
 //        return this;
 //    }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

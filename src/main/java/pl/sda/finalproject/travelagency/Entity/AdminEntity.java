@@ -1,37 +1,34 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 
+import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+@RequiredArgsConstructor
 @Entity
 @Table(name = "ADMIN")
 public class AdminEntity {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
+    private Long id;
 
-    @Column(name = "id", nullable = false)
-    private int id;
+    private String uuid;
 
-    @Column(name = "first_name")
+
+
     private String firstName;
 
-    @Column(name = "second_name")
     private String secondName;
 
-    @Column(name = "user_name")
     private String userName;
 
-    @Column(name = "email")
     private String email;
 
-    @Column(name = "phone_number")
     private double phoneNumber;
 
-    AdminEntity() {
-    }
 
     public String getFirstName() {
         return firstName;
@@ -80,11 +77,11 @@ public class AdminEntity {
 
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

@@ -67,8 +67,8 @@
 								</ul>
 
 								<form action="#" class="contact-form">
-									<input type="text" placeholder="Your Name...">
-									<input type="text" placeholder="Company Name...">
+									<input type="text" th:field="*{author} placeholder="Your Name...">
+									<input type="text"  th:field="*{title} placeholder="Company Name...">
 									<input type="text" placeholder="Email">
 									<textarea name="" id="" placeholder="Message..."></textarea>
 									<input type="submit" class="button" value="Send Message">

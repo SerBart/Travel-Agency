@@ -4,6 +4,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+import java.util.Set;
+
 
 @Entity
 @Table(name = "HOTELS")
@@ -12,7 +14,11 @@ public class HotelsEntity {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
+
+    private String uuid;
+
+    private int capacity;
 
     private String adress;
 
@@ -20,15 +26,54 @@ public class HotelsEntity {
 
     private String city;
 
+    @OneToMany
+    private Set<HotelRoomEntity> rooms;
+
     private Standard standard;
     public HotelsEntity() {
     }
 
-    public int getId() {
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public HotelsEntity setUuid(String uuid) {
+        this.uuid = uuid;
+        return this;
+    }
+
+    public Set<HotelRoomEntity> getRooms() {
+        return rooms;
+    }
+
+    public HotelsEntity setRooms(Set<HotelRoomEntity> rooms) {
+        this.rooms = rooms;
+        return this;
+    }
+
+    public HotelsEntity setCapacity(int capacity) {
+        this.capacity = capacity;
+        return this;
+    }
+
+    public Standard getStandard() {
+        return standard;
+    }
+
+    public HotelsEntity setStandard(Standard standard) {
+        this.standard = standard;
+        return this;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

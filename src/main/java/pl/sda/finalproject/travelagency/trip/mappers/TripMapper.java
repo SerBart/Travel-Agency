@@ -12,7 +12,7 @@ public class TripMapper {
 return new TripDto()
         .setShortDescription(tripEntity.getShortDescription())
         .setUuid(tripEntity.getUuid())
-        .setCountryOfDeparture(tripEntity.getCountryOfDeparture())
+        .setCountryOfArrival(tripEntity.getCountryOfArrival())
         .setBeginingDate(tripEntity.getBeginingDate())
         .setTripCost(tripEntity.getTripCost())
         .setStandard(tripEntity.getStandard())

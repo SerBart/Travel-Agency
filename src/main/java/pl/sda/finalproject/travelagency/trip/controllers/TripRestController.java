@@ -1,19 +1,19 @@
 package pl.sda.finalproject.travelagency.trip.controllers;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import pl.sda.finalproject.travelagency.Entity.City;
+import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
+import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
+import pl.sda.finalproject.travelagency.Entity.Country;
 import pl.sda.finalproject.travelagency.trip.dto.TripDto;
 import pl.sda.finalproject.travelagency.trip.dto.TripForm;
 import pl.sda.finalproject.travelagency.trip.service.TripService;
 import io.swagger.annotations.Api;
-
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@Api(tags = "Book API")
+@Api(tags = "Trip API")
 public class TripRestController {
 
     @Autowired
@@ -38,11 +38,25 @@ public class TripRestController {
         return tripService.getByUuid(uuid);
     }
     @GetMapping(
-            value = "/api/trip/city/{cityOfDeparture}",
+            value = "/api/trip/cityOfDeparture/{cityOfDeparture}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public List<TripDto> getTripsByCityOfDeparture(@PathVariable City cityOfDeparture){
+    public List<TripDto> getTripsByCityOfDeparture(@PathVariable CityOfDeparture cityOfDeparture){
         return tripService.findByCityOfDeparture(cityOfDeparture);
+    }
+    @GetMapping(
+            value = "/api/trip/cityOfArrival/{cityOfArrival}",
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
+    public List<TripDto> getTripsByCityOfArrival(@PathVariable CityOfArrival cityOfArrival){
+        return tripService.findByCityOfArrival(cityOfArrival);
+    }
+    @GetMapping(
+            value = "/api/trip/country/{countryOfArrival}",
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
+    public List<TripDto> getTripsByCountryOfArrival(@PathVariable Country countryOfArrival){
+        return tripService.findByCountryOfArrival(countryOfArrival);
     }
 
     @PostMapping("/api/trip")

@@ -20,7 +20,7 @@ public class TripFormMapper {
                 .setEndDate(tripForm.getEndDate())
                 .setStandard(tripForm.getStandard())
 //                .setHotelsEntity(tripForm.getHotelsEntity())
-                .setCountryOfDeparture(tripForm.getCountryOfDeparture());
+                .setCountryOfArrival(tripForm.getCountryOfArrival());
 
     }
     public static List<TripEntity> mapToEntityList(List<TripForm> tripForms){

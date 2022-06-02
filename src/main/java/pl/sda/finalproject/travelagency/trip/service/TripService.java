@@ -4,7 +4,9 @@ package pl.sda.finalproject.travelagency.trip.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import pl.sda.finalproject.travelagency.Entity.City;
+import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
+import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
+import pl.sda.finalproject.travelagency.Entity.Country;
 import pl.sda.finalproject.travelagency.trip.dto.TripDto;
 import pl.sda.finalproject.travelagency.trip.entity.TripEntity;
 import pl.sda.finalproject.travelagency.trip.dto.TripForm;
@@ -31,10 +33,23 @@ public class TripService {
         return TripMapper.map(tripEntities);
     }
 
-    public List<TripDto> findByCityOfDeparture(City city){
-        List<TripEntity> tripEntities = tripRepository.getAllByCityOfDeparture(city);
+    public List<TripDto> findByCityOfDeparture(CityOfDeparture cityOfDeparture){
+        List<TripEntity> tripEntities = tripRepository.getAllByCityOfDeparture(cityOfDeparture);
         return TripMapper.map(tripEntities);
     }
+
+    public List<TripDto> findByCityOfArrival(CityOfArrival cityOfArrival){
+        List<TripEntity> tripEntities = tripRepository.getAllByCityOfArrival(cityOfArrival);
+        return TripMapper.map(tripEntities);
+    }
+    public List<TripDto> findByCountryOfArrival(Country country){
+        List<TripEntity> tripEntities = tripRepository.getAllByCountryOfArrival(country);
+        return TripMapper.map(tripEntities);
+    }
+//    public List<TripDto> findByCityOfArrival(CityOfDeparture cityOfDeparture){
+//        List<TripEntity> tripEntities = tripRepository.getAllByCityOfArrival(cityOfDeparture);
+//        return TripMapper.map(tripEntities);
+//    }
 
     public TripDto getByUuid(String uuid){
         TripEntity trip = tripRepository.getByUuid(uuid);
@@ -54,7 +69,7 @@ public class TripService {
                 .setBeginingDate(tripForm.getBeginingDate())
                 .setEndDate(tripForm.getEndDate())
                 .setStandard(tripForm.getStandard())
-                .setCountryOfDeparture(tripForm.getCountryOfDeparture())
+                .setCountryOfArrival(tripForm.getCountryOfArrival())
                 .setCityOfArrival(tripForm.getCityOfArrival())
                 .setCityOfDeparture(tripForm.getCityOfDeparture());
 

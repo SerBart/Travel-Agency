@@ -5,7 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import org.springframework.format.annotation.DateTimeFormat;
-import pl.sda.finalproject.travelagency.Entity.City;
+import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
+import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
 import pl.sda.finalproject.travelagency.Entity.Country;
 import pl.sda.finalproject.travelagency.hotel.entity.HotelsEntity;
 import pl.sda.finalproject.travelagency.Entity.Standard;
@@ -33,11 +34,11 @@ public class TripForm {
 
     private int tripCost;
 
-    private Country countryOfDeparture;
+    private Country countryOfArrival;
 
-    private City cityOfDeparture;
+    private CityOfDeparture cityOfDeparture;
 
-    private City cityOfArrival;
+    private CityOfArrival cityOfArrival;
 
     private List<HotelsEntity> hotelsEntity;
 

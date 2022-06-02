@@ -3,17 +3,14 @@ package pl.sda.finalproject.travelagency.trip.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.stereotype.Service;
-import pl.sda.finalproject.travelagency.Entity.City;
+import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
+import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
 import pl.sda.finalproject.travelagency.Entity.Country;
 import pl.sda.finalproject.travelagency.Entity.Standard;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
 
 @Setter
 @Getter
@@ -47,11 +44,11 @@ public class TripEntity {
     @Column(name = "trip_cost")
     private int tripCost;
     @Column(name = "country_of_departure")
-    private Country countryOfDeparture;
+    private Country countryOfArrival;
     @Column(name = "city_of_departure")
-    private City cityOfDeparture;
+    private CityOfDeparture cityOfDeparture;
     @Column(name = "city_of_arrival")
-    private City cityOfArrival;
+    private CityOfArrival cityOfArrival;
 
     private String uuid;
 //    @OneToMany

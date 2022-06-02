@@ -1,14 +1,14 @@
 package pl.sda.finalproject.travelagency.Entity;
 
-public enum City {
+public enum CityOfDeparture {
     WARSAW ("Warszawa"),
-    BERLIN ("Berlin"),
-    KIEV ("Kijow"),
-    LONDON ("Londyn");
+    POZNAN ("Poznan"),
+    GDANSK ("Gdansk"),
+    WROCLAW ("Wroclaw");
 
     private final String name;
 
-    City(String name) {
+    CityOfDeparture(String name) {
         this.name = name;
     }
 

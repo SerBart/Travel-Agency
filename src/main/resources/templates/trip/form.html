@@ -60,8 +60,8 @@
 
 
             <div class="form-group">
-                <label th:for = "country">Kraj wylotu</label>
-                <select th:field="*{countryOfDeparture}"/>
+                <label th:for = "country">Kraj przylotu</label>
+                <select th:field="*{countryOfArrival}"/>
                 <option th:each = "country: ${country}"
                         th:text = "${country.name}"
                         th:value = "${country}">
@@ -70,21 +70,21 @@
             </div><br>
 
             <div class="form-group">
-                <label th:for = "city">Miasto wylotu</label>
+                <label th:for = "cityOfDeparture">Miasto wylotu</label>
                 <select th:field="*{cityOfDeparture}"/>
-                <option th:each = "city: ${city}"
-                        th:text = "${city.name}"
-                        th:value = "${city}">
+                <option th:each = "cityOfDeparture: ${cityOfDeparture}"
+                        th:text = "${cityOfDeparture.name}"
+                        th:value = "${cityOfDeparture}">
                 </option>
                 </select>
             </div><br>
 
             <div class="form-group">
-                <label th:for = "country">Kraj przylotu</label>
+                <label th:for = "country">Miasto przylotu</label>
                 <select th:field="*{cityOfArrival}"/>
-                <option th:each = "city: ${city}"
-                        th:text = "${city.name}"
-                        th:value = "${city}">
+                <option th:each = "cityOfArrival: ${cityOfArrival}"
+                        th:text = "${cityOfArrival.name}"
+                        th:value = "${cityOfArrival}">
                 </option>
                 </select>
             </div><br>

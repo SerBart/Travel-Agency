@@ -1,16 +1,17 @@
-package pl.sda.finalproject.travelagency.Service;
+package pl.sda.finalproject.travelagency.trip.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import pl.sda.finalproject.travelagency.Dto.TripDto;
-import pl.sda.finalproject.travelagency.Entity.TripEntity;
-import pl.sda.finalproject.travelagency.Form.TripForm;
-import pl.sda.finalproject.travelagency.Form.TripFormMapper;
-import pl.sda.finalproject.travelagency.Mappers.TripMapper;
-import pl.sda.finalproject.travelagency.Repositories.HotelsRepository;
-import pl.sda.finalproject.travelagency.Repositories.TripRepository;
+import pl.sda.finalproject.travelagency.Entity.City;
+import pl.sda.finalproject.travelagency.trip.dto.TripDto;
+import pl.sda.finalproject.travelagency.trip.entity.TripEntity;
+import pl.sda.finalproject.travelagency.trip.dto.TripForm;
+import pl.sda.finalproject.travelagency.trip.mappers.TripFormMapper;
+import pl.sda.finalproject.travelagency.trip.mappers.TripMapper;
+import pl.sda.finalproject.travelagency.hotel.repositories.HotelsRepository;
+import pl.sda.finalproject.travelagency.trip.repositories.TripRepository;
 
 import java.util.List;
 
@@ -30,6 +31,11 @@ public class TripService {
         return TripMapper.map(tripEntities);
     }
 
+    public List<TripDto> findByCityOfDeparture(City city){
+        List<TripEntity> tripEntities = tripRepository.getAllByCityOfDeparture(city);
+        return TripMapper.map(tripEntities);
+    }
+
     public TripDto getByUuid(String uuid){
         TripEntity trip = tripRepository.getByUuid(uuid);
         return TripMapper.map(trip);
@@ -44,7 +50,6 @@ public class TripService {
 
     public TripDto update(String uuid, TripForm tripForm) {
         TripEntity trip = tripRepository.getByUuid(uuid)
-                .setTripLength(tripForm.getTripLength())
                 .setTripCost(tripForm.getTripCost())
                 .setBeginingDate(tripForm.getBeginingDate())
                 .setEndDate(tripForm.getEndDate())

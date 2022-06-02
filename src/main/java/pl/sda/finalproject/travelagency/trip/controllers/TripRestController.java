@@ -1,12 +1,12 @@
-package pl.sda.finalproject.travelagency.Controller;
+package pl.sda.finalproject.travelagency.trip.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import pl.sda.finalproject.travelagency.Dto.TripDto;
-import pl.sda.finalproject.travelagency.Form.TripForm;
-import pl.sda.finalproject.travelagency.Repositories.TripRepository;
-import pl.sda.finalproject.travelagency.Service.TripService;
+import pl.sda.finalproject.travelagency.Entity.City;
+import pl.sda.finalproject.travelagency.trip.dto.TripDto;
+import pl.sda.finalproject.travelagency.trip.dto.TripForm;
+import pl.sda.finalproject.travelagency.trip.service.TripService;
 import io.swagger.annotations.Api;
 
 import javax.validation.Valid;
@@ -19,17 +19,13 @@ public class TripRestController {
     @Autowired
     TripService tripService;
 
-    @Autowired
-    TripRepository tripRepository;
-
-
 //    @PostMapping("/")
 //    public String trip(Model model){
 //        model.addAttribute();
 //        return "admin-register.html";
 //    }
 
-    @GetMapping("/api/trip")
+    @GetMapping(value = "/api/trip")
     public List<TripDto> getTrips() {
         return tripService.findAll();
     }
@@ -41,11 +37,17 @@ public class TripRestController {
     public TripDto getTrip(@PathVariable String uuid) {
         return tripService.getByUuid(uuid);
     }
+    @GetMapping(
+            value = "/api/trip/city/{cityOfDeparture}",
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
+    public List<TripDto> getTripsByCityOfDeparture(@PathVariable City cityOfDeparture){
+        return tripService.findByCityOfDeparture(cityOfDeparture);
+    }
 
     @PostMapping("/api/trip")
-    public String createTrip(@Valid @RequestBody TripForm tripForm) {
-        tripService.create(tripForm);
-        return "redirect:/api/trip";
+    public TripDto createTrip(@Valid @RequestBody TripForm tripForm) {
+        return tripService.create(tripForm);
     }
 
 

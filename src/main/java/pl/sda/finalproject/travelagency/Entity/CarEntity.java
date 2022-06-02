@@ -1,18 +1,44 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+@Getter
+@Setter
 
+@RequiredArgsConstructor
 @Entity
 @Table(name = "CARS")
 public class CarEntity {
+
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
+
+    private String uuid;
+
+
+    @Column(name = "model")
+    private String model;
+
+    @Column(name = "brand")
+    private String brand;
+
+    @Column(name = "year_of_production")
+    private String yearOfProduction;
+
+    @Column(name = "howManyPeople")
+    private int howManyPeople;
+
+    @Column(name = "power")
+    private int power;
 
     public int getPrice() {
         return price;
@@ -23,7 +49,60 @@ public class CarEntity {
         return this;
     }
 
-    CarEntity() {
+    public String getModel() {
+        return model;
+    }
+
+    public CarEntity setModel(String model) {
+        this.model = model;
+        return this;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public CarEntity setBrand(String brand) {
+        this.brand = brand;
+        return this;
+    }
+
+    public String getYearOfProduction() {
+        return yearOfProduction;
+    }
+
+    public CarEntity setYearOfProduction(String yearOfProduction) {
+        this.yearOfProduction = yearOfProduction;
+        return this;
+    }
+
+    public int getHowManyPeople() {
+        return howManyPeople;
+    }
+
+    public CarEntity setHowManyPeople(int howManyPeople) {
+        this.howManyPeople = howManyPeople;
+        return this;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public CarEntity setPower(int power) {
+        this.power = power;
+        return this;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+
+
+    public CarEntity setUuid(String uuid) {
+        this.uuid = uuid;
+        return this;
     }
 
     public Standard getStandard() {
@@ -72,11 +151,11 @@ public class CarEntity {
 
     private boolean isAvaible;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

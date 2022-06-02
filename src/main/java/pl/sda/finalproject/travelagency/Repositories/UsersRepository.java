@@ -1,19 +1,19 @@
 package pl.sda.finalproject.travelagency.Repositories;
 
+import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import pl.sda.finalproject.travelagency.Entity.TripEntity;
 import pl.sda.finalproject.travelagency.Entity.UserEntity;
 
+import javax.persistence.EntityManager;
 import java.util.Optional;
 
-public class UsersRepository {
-
-    Optional<UserEntity> findById(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        var result = session.get(UserEntity.class, id);
-        transaction.commit();
-        session.close();
-        return Optional.ofNullable(result);
-    }
+@Repository
+public interface UsersRepository extends JpaRepository<UserEntity, Long>, JpaSpecificationExecutor<UserEntity> {
+    UserEntity getByUuid(String uuid);
 }

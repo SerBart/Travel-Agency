@@ -9,7 +9,7 @@ public class MenuService {
 
     public List<MenuDto> getMenu(){
         return List.of(
-                new MenuDto().setName("Lista wycieczek").setUrl("/trip"),
+                new MenuDto().setName("Lista wycieczek").setUrl("/templates/trip"),
                 new MenuDto().setName("Wycieczki last minute").setUrl("/lastmin"),
                 new MenuDto().setName("Najchętniej wybierane!").setUrl("/toptrip"),
                 new MenuDto().setName("Wyszukiwanie").setUrl("/search"),

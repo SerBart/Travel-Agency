@@ -2,11 +2,21 @@ package pl.sda.finalproject.travelagency.Dto;
 
 public class CarDto {
 
+    private String uuid;
     private String model;
     private String brand;
     private String yearOfProduction;
     private int howManyPeople;
     private int power;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public CarDto setUuid(String uuid) {
+        this.uuid = uuid;
+        return this;
+    }
 
     public String getModel() {
         return model;
@@ -52,4 +62,5 @@ public class CarDto {
         this.power = power;
         return this;
     }
+
 }

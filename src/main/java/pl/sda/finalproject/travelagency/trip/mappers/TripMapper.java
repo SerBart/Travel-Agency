@@ -1,7 +1,7 @@
-package pl.sda.finalproject.travelagency.Mappers;
+package pl.sda.finalproject.travelagency.trip.mappers;
 
-import pl.sda.finalproject.travelagency.Dto.TripDto;
-import pl.sda.finalproject.travelagency.Entity.TripEntity;
+import pl.sda.finalproject.travelagency.trip.dto.TripDto;
+import pl.sda.finalproject.travelagency.trip.entity.TripEntity;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,14 +10,16 @@ public class TripMapper {
 
     public static TripDto map(TripEntity tripEntity) {
 return new TripDto()
-        .setCountryOfDeparture(tripEntity.getCountryOfDeparture())
+        .setShortDescription(tripEntity.getShortDescription())
+        .setLongDescription(tripEntity.getLongDescription())
+        .setUuid(tripEntity.getUuid())
+        .setCountryOfArrival(tripEntity.getCountryOfArrival())
         .setBeginingDate(tripEntity.getBeginingDate())
         .setTripCost(tripEntity.getTripCost())
         .setStandard(tripEntity.getStandard())
         .setEndDate(tripEntity.getEndDate())
         .setTripLength(tripEntity.getTripLength())
         .setCityOfArrival(tripEntity.getCityOfArrival())
-        .setUuid(tripEntity.getUuid())
         .setCityOfDeparture(tripEntity.getCityOfDeparture());
     }
 

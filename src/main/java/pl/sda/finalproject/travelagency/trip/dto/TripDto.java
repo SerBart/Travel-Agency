@@ -1,13 +1,14 @@
-package pl.sda.finalproject.travelagency.Dto;
+package pl.sda.finalproject.travelagency.trip.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import pl.sda.finalproject.travelagency.Entity.City;
+import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
+import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
 import pl.sda.finalproject.travelagency.Entity.Country;
-import pl.sda.finalproject.travelagency.Entity.HotelsEntity;
+import pl.sda.finalproject.travelagency.hotel.entity.HotelsEntity;
 import pl.sda.finalproject.travelagency.Entity.Standard;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -24,9 +25,14 @@ public class TripDto {
 
     private String uuid;
 
+    private String longDescription;
+
+    private String shortDescription;
+
     private Standard standard;
 
     private Date beginingDate;
+
 
     private Date endDate;
 
@@ -34,11 +40,11 @@ public class TripDto {
 
     private int tripCost;
 
-    private Country countryOfDeparture;
+    private Country countryOfArrival;
 
-    private City cityOfDeparture;
+    private CityOfDeparture cityOfDeparture;
 
-    private City cityOfArrival;
+    private CityOfArrival cityOfArrival;
 
     private List<HotelsEntity> hotelsEntity;
 

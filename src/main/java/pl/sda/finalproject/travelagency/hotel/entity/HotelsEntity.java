@@ -1,6 +1,8 @@
-package pl.sda.finalproject.travelagency.Entity;
+package pl.sda.finalproject.travelagency.hotel.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import pl.sda.finalproject.travelagency.Entity.HotelRoomEntity;
+import pl.sda.finalproject.travelagency.Entity.Standard;
 
 import javax.persistence.*;
 

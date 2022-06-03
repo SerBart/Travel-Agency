@@ -1,16 +1,19 @@
-package pl.sda.finalproject.travelagency.Service;
+package pl.sda.finalproject.travelagency.trip.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import pl.sda.finalproject.travelagency.Dto.TripDto;
-import pl.sda.finalproject.travelagency.Entity.TripEntity;
-import pl.sda.finalproject.travelagency.Form.TripForm;
-import pl.sda.finalproject.travelagency.Form.TripFormMapper;
-import pl.sda.finalproject.travelagency.Mappers.TripMapper;
-import pl.sda.finalproject.travelagency.Repositories.HotelsRepository;
-import pl.sda.finalproject.travelagency.Repositories.TripRepository;
+import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
+import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
+import pl.sda.finalproject.travelagency.Entity.Country;
+import pl.sda.finalproject.travelagency.trip.dto.TripDto;
+import pl.sda.finalproject.travelagency.trip.entity.TripEntity;
+import pl.sda.finalproject.travelagency.trip.dto.TripForm;
+import pl.sda.finalproject.travelagency.trip.mappers.TripFormMapper;
+import pl.sda.finalproject.travelagency.trip.mappers.TripMapper;
+import pl.sda.finalproject.travelagency.hotel.repositories.HotelsRepository;
+import pl.sda.finalproject.travelagency.trip.repositories.TripRepository;
 
 import java.util.List;
 
@@ -30,6 +33,24 @@ public class TripService {
         return TripMapper.map(tripEntities);
     }
 
+    public List<TripDto> findByCityOfDeparture(CityOfDeparture cityOfDeparture){
+        List<TripEntity> tripEntities = tripRepository.getAllByCityOfDeparture(cityOfDeparture);
+        return TripMapper.map(tripEntities);
+    }
+
+    public List<TripDto> findByCityOfArrival(CityOfArrival cityOfArrival){
+        List<TripEntity> tripEntities = tripRepository.getAllByCityOfArrival(cityOfArrival);
+        return TripMapper.map(tripEntities);
+    }
+    public List<TripDto> findByCountryOfArrival(Country country){
+        List<TripEntity> tripEntities = tripRepository.getAllByCountryOfArrival(country);
+        return TripMapper.map(tripEntities);
+    }
+//    public List<TripDto> findByCityOfArrival(CityOfDeparture cityOfDeparture){
+//        List<TripEntity> tripEntities = tripRepository.getAllByCityOfArrival(cityOfDeparture);
+//        return TripMapper.map(tripEntities);
+//    }
+
     public TripDto getByUuid(String uuid){
         TripEntity trip = tripRepository.getByUuid(uuid);
         return TripMapper.map(trip);
@@ -44,14 +65,16 @@ public class TripService {
 
     public TripDto update(String uuid, TripForm tripForm) {
         TripEntity trip = tripRepository.getByUuid(uuid)
-                .setTripLength(tripForm.getTripLength())
                 .setTripCost(tripForm.getTripCost())
                 .setBeginingDate(tripForm.getBeginingDate())
                 .setEndDate(tripForm.getEndDate())
                 .setStandard(tripForm.getStandard())
-                .setCountryOfDeparture(tripForm.getCountryOfDeparture())
+                .setCountryOfArrival(tripForm.getCountryOfArrival())
                 .setCityOfArrival(tripForm.getCityOfArrival())
-                .setCityOfDeparture(tripForm.getCityOfDeparture());
+                .setCityOfDeparture(tripForm.getCityOfDeparture())
+                .setStandard(tripForm.getStandard())
+                .setLongDescription(tripForm.getLongDescription())
+                .setShortDescription(tripForm.getShortDescription());
 
 //                .setHotelsEntity(tripForm.getHotelsEntity());
 

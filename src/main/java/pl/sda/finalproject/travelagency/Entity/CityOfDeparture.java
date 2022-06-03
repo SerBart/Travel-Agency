@@ -1,13 +1,14 @@
 package pl.sda.finalproject.travelagency.Entity;
 
-public enum Standard {
-    ECONOMIC ("Ekonomiczny"),
-    MEDIUM ("Sredni"),
-    HIGH ("Wysoki");
+public enum CityOfDeparture {
+    WARSAW ("Warszawa"),
+    POZNAN ("Poznan"),
+    GDANSK ("Gdansk"),
+    WROCLAW ("Wroclaw");
 
     private final String name;
 
-    Standard(String name) {
+    CityOfDeparture(String name) {
         this.name = name;
     }
 

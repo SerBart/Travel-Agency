@@ -1,9 +1,8 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import pl.sda.finalproject.travelagency.trip.entity.TripEntity;
 
 import javax.persistence.*;
 import java.util.Date;

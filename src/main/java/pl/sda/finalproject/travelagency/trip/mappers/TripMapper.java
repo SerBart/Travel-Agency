@@ -11,6 +11,7 @@ public class TripMapper {
     public static TripDto map(TripEntity tripEntity) {
 return new TripDto()
         .setShortDescription(tripEntity.getShortDescription())
+        .setLongDescription(tripEntity.getLongDescription())
         .setUuid(tripEntity.getUuid())
         .setCountryOfArrival(tripEntity.getCountryOfArrival())
         .setBeginingDate(tripEntity.getBeginingDate())

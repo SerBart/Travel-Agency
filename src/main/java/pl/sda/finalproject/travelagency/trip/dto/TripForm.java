@@ -32,6 +32,8 @@ public class TripForm {
 
     private String shortDescription;
 
+    private String longDescription;
+
     private int tripCost;
 
     private Country countryOfArrival;

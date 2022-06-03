@@ -32,6 +32,8 @@ public class TripEntity {
     @Column(name = "standard")
     private Standard standard;
 
+    private String longDescription;
+
     @Column(name = "begining_date")
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date beginingDate;

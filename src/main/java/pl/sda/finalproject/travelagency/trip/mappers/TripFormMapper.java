@@ -12,6 +12,7 @@ public class TripFormMapper {
     public static TripEntity map(TripForm tripForm) {
         return new TripEntity()
                 .setShortDescription(tripForm.getShortDescription())
+                .setLongDescription(tripForm.getLongDescription())
                 .setUuid(UUID.randomUUID().toString())
                 .setBeginingDate(tripForm.getBeginingDate())
                 .setCityOfArrival(tripForm.getCityOfArrival())

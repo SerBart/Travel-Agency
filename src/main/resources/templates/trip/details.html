@@ -29,18 +29,79 @@
         </div>
     </header>
     <main>
-        <h2>
 
-            <a th:href="@{/trip/{uuid}/edit/(uuid=${trip.uuid})}" class="btn btn-sm btn-primary float-end"> Edytuj wycieczke </a>
+        <h2>
+            <a th:href="@{/trip/{uuid}/edit/(uuid=${trip.uuid})}" class="btn btn-sm btn-primary float-end"> Edytuj
+                wycieczke </a>
         </h2>
+        <table>
+            <tr>
+                <td><img src="https://mops.lubin.pl/wp-content/uploads/2018/04/wycieczka.png" width="300" height="300">
+
+
+                </td>
+                <td style="float:right">
+                    <div>
+                        <strong>
+                            <p th:text="${trip.shortDescription}" style="font-size:40px"></p>
+                        </strong>
+                    </div>
+                    <div>
+                        <strong> CENA:
+                            <span th:text="${trip.tripCost}"></span>
+                            <span>PLN</span>
+                        </strong>
+                    </div>
+                    <div class="form-group">
+                        <strong>
+                            <label>Rozpoczecie:</label>
+                            <span th:text="${#dates.format(trip.beginingDate, 'dd-MM-yyyy')}"></span>
+                            <!--            <span type="date" class="form-control" name="beginingDate" th:value="${#dates.format(beginingDate, 'yyyy-MM-dd')}" />-->
+                        </strong>
+                    </div>
+                    <div class="form-group">
+                        <strong>
+                            <label>Powrot:</label>
+                            <span th:text="${#dates.format(trip.endDate, 'dd-MM-yyyy')}"></span>
+                            <!--            <span type="date" class="form-control" name="beginingDate" th:value="${#dates.format(beginingDate, 'yyyy-MM-dd')}" />-->
+                        </strong>
+                    </div>
+                    <div class="form-group">
+                        <strong>
+                            <label>Miasto wylotu:</label>
+                            <span th:text="${trip.cityOfDeparture.name}"></span>
+                            <!--            <span type="date" class="form-control" name="beginingDate" th:value="${#dates.format(beginingDate, 'yyyy-MM-dd')}" />-->
+                        </strong>
+                    </div>
+                    <div class="form-group">
+                        <strong>
+                            <label>Kraj pobytu:</label>
+                            <span th:text="${trip.countryOfArrival.name}"></span>
+                            <!--            <span type="date" class="form-control" name="beginingDate" th:value="${#dates.format(beginingDate, 'yyyy-MM-dd')}" />-->
+                        </strong>
+                    </div>
+                    <div class="form-group">
+                        <strong>
+                            <label>Miasto pobytu:</label>
+                            <span th:text="${trip.cityOfArrival.name}"></span>
+                            <!--            <span type="date" class="form-control" name="beginingDate" th:value="${#dates.format(beginingDate, 'yyyy-MM-dd')}" />-->
+                        </strong>
+                    </div>
+
+                </td>
+            </tr>
+
+        </table>
         <div>
-            <strong>Author:</strong>
-            <span th:text="${trip.tripCost}"></span>
+            <p th:text="${trip.longDescription}"></p>
         </div>
-        <div>
-            <strong>Title:</strong>
-            <span th:text="${trip.tripCost}"></span>
-        </div>
+
+
+        <!--        <div>-->
+        <!--            <strong>-->
+        <!--                -->
+        <!--            </strong>-->
+        <!--        </div>-->
     </main>
 
 </div>

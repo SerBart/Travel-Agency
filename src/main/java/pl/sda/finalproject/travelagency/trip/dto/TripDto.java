@@ -25,11 +25,14 @@ public class TripDto {
 
     private String uuid;
 
+    private String longDescription;
+
     private String shortDescription;
 
     private Standard standard;
 
     private Date beginingDate;
+
 
     private Date endDate;
 

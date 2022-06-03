@@ -71,7 +71,10 @@ public class TripService {
                 .setStandard(tripForm.getStandard())
                 .setCountryOfArrival(tripForm.getCountryOfArrival())
                 .setCityOfArrival(tripForm.getCityOfArrival())
-                .setCityOfDeparture(tripForm.getCityOfDeparture());
+                .setCityOfDeparture(tripForm.getCityOfDeparture())
+                .setStandard(tripForm.getStandard())
+                .setLongDescription(tripForm.getLongDescription())
+                .setShortDescription(tripForm.getShortDescription());
 
 //                .setHotelsEntity(tripForm.getHotelsEntity());
 

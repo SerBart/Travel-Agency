@@ -36,7 +36,7 @@
             <input type="hidden" class="form-control" th:field="*{uuid}"/>
 
             <div class="form-group">
-                <label>Opis</label>
+                <label>Tytuł wycieczki</label>
                 <input type="text" class="form-control" th:field="*{shortDescription}"/>
             </div><br>
 
@@ -98,6 +98,11 @@
             <div class="form-group">
                 <label>Koniec wycieczki:</label>
                 <input type="date" class="form-control" name="endDate" th:value="${#dates.format(endDate, 'yyyy-MM-dd')}" />
+            </div><br>
+
+            <div class="form-group">
+                <label>Opis Wycieczki</label>
+                <input type="text" class="form-control" th:field="*{longDescription}"/>
             </div><br>
             <button type="submit" class="btn btn-primary mt-2">Submit</button>
         </form>

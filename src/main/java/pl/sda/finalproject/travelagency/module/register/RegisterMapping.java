@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class RegisterMapping {
 
-    @PostMapping("/login")
+    @GetMapping("/login")
     public String list(Model model) {
         return "/registration/registration.html";
     }

@@ -18,7 +18,7 @@ public interface TripRepository extends JpaRepository<TripEntity, Long>, JpaSpec
     TripEntity getByUuid(String uuid);
     List<TripEntity> getAllByCityOfDeparture(CityOfDeparture cityOfDeparture);
     List<TripEntity> getAllByCountryOfArrival(Country countryOfArrival);
-
+    List<TripEntity> findAll();
     List<TripEntity> getAllByCityOfArrival(CityOfArrival cityOfArrival);
 //    List<TripEntity> getAllByCityOfArrival(CityOfDeparture cityOfDepartureOfArrival);
 }

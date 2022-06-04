@@ -1,6 +1,7 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 public enum Country {
+    ALL ("Wszystkie kraje"),
     POLAND ("Polska"),
     GERMANY ("Niemcy"),
     UKRAINE ("Ukraina"),

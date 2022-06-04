@@ -1,6 +1,7 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 public enum CityOfArrival {
+    ALL ("Wszystkie miasta"),
     BERLIN ("Berlin"),
     KIEV ("Kijow"),
     CHRZA ("chrząszczyżewoszyce"),

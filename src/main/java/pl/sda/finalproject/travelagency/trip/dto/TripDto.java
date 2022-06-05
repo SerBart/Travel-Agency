@@ -12,6 +12,7 @@ import pl.sda.finalproject.travelagency.hotel.entity.HotelsEntity;
 import pl.sda.finalproject.travelagency.Entity.Standard;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -31,12 +32,12 @@ public class TripDto {
 
     private Standard standard;
 
-    private Date beginingDate;
+    private LocalDate beginingDate;
 
 
-    private Date endDate;
+    private LocalDate endDate;
 
-    private int tripLength;
+    private long tripLength;
 
     private int tripCost;
 

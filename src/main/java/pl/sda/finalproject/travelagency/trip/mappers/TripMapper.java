@@ -3,7 +3,11 @@ package pl.sda.finalproject.travelagency.trip.mappers;
 import pl.sda.finalproject.travelagency.trip.dto.TripDto;
 import pl.sda.finalproject.travelagency.trip.entity.TripEntity;
 
+import java.time.Duration;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class TripMapper {

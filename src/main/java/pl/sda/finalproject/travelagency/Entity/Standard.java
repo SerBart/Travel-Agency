@@ -1,6 +1,7 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 public enum Standard {
+    ALL ("Wszystkie"),
     ECONOMIC ("Ekonomiczny"),
     MEDIUM ("Sredni"),
     HIGH ("Wysoki");

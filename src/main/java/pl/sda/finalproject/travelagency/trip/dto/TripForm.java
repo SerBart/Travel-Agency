@@ -11,6 +11,7 @@ import pl.sda.finalproject.travelagency.Entity.Country;
 import pl.sda.finalproject.travelagency.hotel.entity.HotelsEntity;
 import pl.sda.finalproject.travelagency.Entity.Standard;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -26,9 +27,9 @@ public class TripForm {
     private Standard standard;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date beginingDate;
+    private LocalDate beginingDate;
     @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date endDate;
+    private LocalDate endDate;
 
     private String shortDescription;
 
@@ -44,9 +45,12 @@ public class TripForm {
 
     private List<HotelsEntity> hotelsEntity;
 
+    private Long tripLength;
+
     public boolean isNew() {
         return uuid == null || uuid.isBlank();
     }
+
 
 
 }

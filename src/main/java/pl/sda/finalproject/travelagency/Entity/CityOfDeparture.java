@@ -1,7 +1,7 @@
 package pl.sda.finalproject.travelagency.Entity;
 
 public enum CityOfDeparture {
-    ALL ("Wszystkie miasta"),
+    ALL ("Wszystkie"),
     WARSAW ("Warszawa"),
     POZNAN ("Poznan"),
     GDANSK ("Gdansk"),

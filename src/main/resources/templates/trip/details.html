@@ -52,17 +52,23 @@
                             <span>PLN</span>
                         </strong>
                     </div>
+                    <div>
+                        <strong> Dlugosc wycieczki:
+                            <span th:text="${trip.tripLength}"></span>
+                            <span>dn.</span>
+                        </strong>
+                    </div>
                     <div class="form-group">
                         <strong>
                             <label>Rozpoczecie:</label>
-                            <span th:text="${#dates.format(trip.beginingDate, 'dd-MM-yyyy')}"></span>
+                            <span th:text="${#temporals.format(trip.beginingDate, 'dd-MM-yyyy')}"></span>
                             <!--            <span type="date" class="form-control" name="beginingDate" th:value="${#dates.format(beginingDate, 'yyyy-MM-dd')}" />-->
                         </strong>
                     </div>
                     <div class="form-group">
                         <strong>
                             <label>Powrot:</label>
-                            <span th:text="${#dates.format(trip.endDate, 'dd-MM-yyyy')}"></span>
+                            <span th:text="${#temporals.format(trip.endDate, 'dd-MM-yyyy')}"></span>
                             <!--            <span type="date" class="form-control" name="beginingDate" th:value="${#dates.format(beginingDate, 'yyyy-MM-dd')}" />-->
                         </strong>
                     </div>

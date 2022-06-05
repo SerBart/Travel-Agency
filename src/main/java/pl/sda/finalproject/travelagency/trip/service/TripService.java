@@ -1,12 +1,12 @@
 package pl.sda.finalproject.travelagency.trip.service;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
 import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
 import pl.sda.finalproject.travelagency.Entity.Country;
+import pl.sda.finalproject.travelagency.Entity.Standard;
 import pl.sda.finalproject.travelagency.trip.dto.TripDto;
 import pl.sda.finalproject.travelagency.trip.entity.TripEntity;
 import pl.sda.finalproject.travelagency.trip.dto.TripForm;
@@ -14,17 +14,48 @@ import pl.sda.finalproject.travelagency.trip.mappers.TripFormMapper;
 import pl.sda.finalproject.travelagency.trip.mappers.TripMapper;
 import pl.sda.finalproject.travelagency.hotel.repositories.HotelsRepository;
 import pl.sda.finalproject.travelagency.trip.repositories.TripRepository;
-
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class TripService {
+
 
     @Autowired
     public TripRepository tripRepository;
 
     @Autowired
     public HotelsRepository hotelsRepository;
+
+    public List<TripDto> findAll(TripSearchCriteria tripSearchCriteria) {
+        List<Specification<TripEntity>> searchCriterias = new ArrayList<>();
+
+        if(tripSearchCriteria.getCityOfDeparture() != null && tripSearchCriteria.getCityOfDeparture() != CityOfDeparture.ALL){
+            searchCriterias.add(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("cityOfDeparture"), tripSearchCriteria.getCityOfDeparture())));
+        }
+        if(tripSearchCriteria.getCityOfArrival() != null && tripSearchCriteria.getCityOfArrival() != CityOfArrival.ALL){
+            searchCriterias.add(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("cityOfArrival"), tripSearchCriteria.getCityOfArrival())));
+        }
+
+//        if(tripSearchCriteria.getBeginingDate() != null){
+//            searchCriterias.add(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("beginingDate"), tripSearchCriteria.getBeginingDate())));
+//        }
+//        if(tripSearchCriteria.getEndDate() != null){
+//            searchCriterias.add(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("endDate"), tripSearchCriteria.getEndDate())));
+//        }
+        if(tripSearchCriteria.getStandard() != null && tripSearchCriteria.getStandard() != Standard.ALL){
+            searchCriterias.add(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("standard"), tripSearchCriteria.getStandard())));
+        }
+        if(tripSearchCriteria.getTripLength() != 0){
+            searchCriterias.add(((root, query, criteriaBuilder) -> criteriaBuilder.equal((root.get("tripLength")), tripSearchCriteria.getTripLength())));
+        }
+
+        List<TripEntity> tripEntities = searchCriterias.stream()
+                .reduce(Specification::and)
+                .map((specification -> tripRepository.findAll(specification))).orElseGet(() -> tripRepository.findAll());
+        return TripMapper.map(tripEntities);
+    }
 
 
     @Cacheable
@@ -33,10 +64,20 @@ public class TripService {
         return TripMapper.map(tripEntities);
     }
 
+    public List<TripDto> findByCityOfDepartureAndCityOfArrival(CityOfDeparture cityOfDeparture, CityOfArrival cityOfArrival){
+        List<TripEntity> tripEntities = tripRepository.getAllByCityOfDepartureAndCityOfArrival(cityOfDeparture, cityOfArrival);
+        return TripMapper.map(tripEntities);
+    }
+
     public List<TripDto> findByCityOfDeparture(CityOfDeparture cityOfDeparture){
         List<TripEntity> tripEntities = tripRepository.getAllByCityOfDeparture(cityOfDeparture);
         return TripMapper.map(tripEntities);
     }
+
+//    public List<TripDto> findByTripLength(long tripLength){
+//        List<TripEntity> tripEntities = tripRepository.getAllByTripLength(TimeUnit.DAYS.convert(
+////                Math.abs(getEndDate().getTime()- getBeginingDate().getTime()), TimeUnit.MILLISECONDS) + 1)
+//    }
 
     public List<TripDto> findByCityOfArrival(CityOfArrival cityOfArrival){
         List<TripEntity> tripEntities = tripRepository.getAllByCityOfArrival(cityOfArrival);

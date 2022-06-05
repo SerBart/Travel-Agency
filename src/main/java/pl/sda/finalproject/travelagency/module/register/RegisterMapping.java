@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RegisterMapping {
 
     @GetMapping("/login")
-    public String list(Model model) {
-        return "/registration/registration.html";
+    public String list() {
+        return "/registration/login.html";
+    }
+    @PostMapping("/login")
+    public String some(){
+        return "/index.html";
     }
 
 }

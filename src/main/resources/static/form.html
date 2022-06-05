@@ -32,7 +32,7 @@
         <h2 th:if="${tripForm.uuid != null}">Edit Book</h2>
         <h2 th:if="${tripForm.uuid == null}">New Book</h2>
 
-        <form th:action="@{/templates/trip}" th:object="${tripForm}" method="POST" >
+        <form th:action="@{/static/templates1/trip}" th:object="${tripForm}" method="POST" >
 
             <input type="hidden" class="form-control" th:field="*{uuid}"/>
 

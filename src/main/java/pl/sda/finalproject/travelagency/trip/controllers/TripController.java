@@ -21,6 +21,7 @@ import pl.sda.finalproject.travelagency.trip.service.TripService;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class TripController {
@@ -43,7 +44,7 @@ public class TripController {
 //            @ModelAttribute("beginingDate") Date beginingDate,
 //            @ModelAttribute("endDate") Date endDate,
             @ModelAttribute("standard") Standard standard,
-            @ModelAttribute("tripLength") Integer tripLength,
+            @ModelAttribute("tripLength") String tripLength,
             Model model) {
         TripSearchCriteria tripSearchCriteria = TripSearchCriteria.builder()
 //                .beginingDate(beginingDate)
@@ -51,7 +52,7 @@ public class TripController {
                 .standard(standard)
                 .cityOfDeparture(cityOfDeparture)
                 .cityOfArrival(cityOfArrival)
-                .tripLength(tripLength)
+                .tripLength(Objects.equals(tripLength, "") ? 0 : Integer.parseInt(tripLength))
                 .build();
         model.addAttribute("citiesOfArrival", CityOfArrival.values());
         model.addAttribute("citiesOfDeparture", CityOfDeparture.values());

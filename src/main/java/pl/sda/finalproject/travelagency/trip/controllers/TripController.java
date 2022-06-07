@@ -8,6 +8,7 @@ import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
 import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
 import pl.sda.finalproject.travelagency.Entity.Country;
 import pl.sda.finalproject.travelagency.Entity.Standard;
+//import pl.sda.finalproject.travelagency.hotel.service.HotelsService;
 import pl.sda.finalproject.travelagency.trip.dto.TripDto;
 import pl.sda.finalproject.travelagency.trip.dto.TripForm;
 import pl.sda.finalproject.travelagency.trip.entity.TripEntity;
@@ -23,6 +24,9 @@ import java.util.Objects;
 public class TripController {
     @Autowired
     private TripService tripService;
+
+//    @Autowired
+//    private HotelsService hotelsService;
 
         @GetMapping("/trip")
         public String redirect(Model model){
@@ -90,6 +94,7 @@ public class TripController {
         model.addAttribute("cityOfDeparture", CityOfDeparture.values());
         model.addAttribute("cityOfArrival", CityOfArrival.values());
         model.addAttribute("standard", Standard.values());
+
         return "trip/form.html";
     }
 
@@ -100,14 +105,19 @@ public class TripController {
     }
 
     @GetMapping("/trip/{uuid}")
-    public String details(@PathVariable("uuid") String uuid, Model model) {
+    public String details(@PathVariable("uuid") String uuid,
+//                          @PathVariable("cityOfArrival") CityOfArrival cityOfArrival,
+                          Model model) {
         model.addAttribute("trip", tripService.getByUuid(uuid));
         model.addAttribute("country", Country.values());
         model.addAttribute("cityOfDeparture", CityOfDeparture.values());
         model.addAttribute("cityOfArrival", CityOfArrival.values());
         model.addAttribute("standard", Standard.values());
+//        model.addAttribute("hotel", hotelsService.getAllByCity(cityOfArrival));
+
         return "trip/details.html";
     }
+
 
     @GetMapping("/trip/page/{pageNo}")
     public String findPaginated(@PathVariable (value = "pageNo") int pageNo
@@ -122,6 +132,7 @@ public class TripController {
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
+        model.addAttribute("tripsProm", tripService.getAllByPromIsTrue());
         model.addAttribute("trips", tripService.findPaginated(pageNo, pageSize, sortField, sortDir));
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
         model.addAttribute("citiesOfDeparture", CityOfDeparture.values());

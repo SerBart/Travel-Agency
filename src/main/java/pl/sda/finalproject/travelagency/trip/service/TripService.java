@@ -15,7 +15,7 @@ import pl.sda.finalproject.travelagency.trip.entity.TripEntity;
 import pl.sda.finalproject.travelagency.trip.dto.TripForm;
 import pl.sda.finalproject.travelagency.trip.mappers.TripFormMapper;
 import pl.sda.finalproject.travelagency.trip.mappers.TripMapper;
-import pl.sda.finalproject.travelagency.hotel.repositories.HotelsRepository;
+//import pl.sda.finalproject.travelagency.hotel.repositories.HotelsRepository;
 import pl.sda.finalproject.travelagency.trip.repositories.TripRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +27,8 @@ public class TripService {
     @Autowired
     public TripRepository tripRepository;
 
-    @Autowired
-    public HotelsRepository hotelsRepository;
+//    @Autowired
+//    public HotelsRepository hotelsRepository;
 
     public List<TripDto> findAll(TripSearchCriteria tripSearchCriteria) {
         List<Specification<TripEntity>> searchCriterias = new ArrayList<>();
@@ -40,12 +40,6 @@ public class TripService {
             searchCriterias.add(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("cityOfArrival"), tripSearchCriteria.getCityOfArrival())));
         }
 
-//        if(tripSearchCriteria.getBeginingDate() != null){
-//            searchCriterias.add(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("beginingDate"), tripSearchCriteria.getBeginingDate())));
-//        }
-//        if(tripSearchCriteria.getEndDate() != null){
-//            searchCriterias.add(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("endDate"), tripSearchCriteria.getEndDate())));
-//        }
         if(tripSearchCriteria.getStandard() != null && tripSearchCriteria.getStandard() != Standard.ALL){
             searchCriterias.add(((root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("standard"), tripSearchCriteria.getStandard())));
         }
@@ -116,6 +110,7 @@ public class TripService {
 
     public TripDto update(String uuid, TripForm tripForm) {
         TripEntity trip = tripRepository.getByUuid(uuid)
+                .setProm(tripForm.isProm())
                 .setTripCost(tripForm.getTripCost())
                 .setBeginingDate(tripForm.getBeginingDate())
                 .setEndDate(tripForm.getEndDate())
@@ -144,6 +139,10 @@ public class TripService {
         tripRepository.delete(entity);
     }
 
+    public List<TripDto> getAllByPromIsTrue() {
+        List<TripEntity> tripEntities = tripRepository.getAllByPromIsTrue();
+        return TripMapper.map(tripEntities);
+    }
 
 
 

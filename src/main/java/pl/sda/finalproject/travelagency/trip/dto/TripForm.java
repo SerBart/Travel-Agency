@@ -37,6 +37,8 @@ public class TripForm {
 
     private int tripCost;
 
+    private boolean prom;
+
     private Country countryOfArrival;
 
     private CityOfDeparture cityOfDeparture;
@@ -51,6 +53,7 @@ public class TripForm {
         return uuid == null || uuid.isBlank();
     }
 
-
-
+    public boolean isProm() {
+        return prom;
+    }
 }

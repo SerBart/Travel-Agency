@@ -8,10 +8,12 @@ import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
 import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
 import pl.sda.finalproject.travelagency.Entity.Country;
 import pl.sda.finalproject.travelagency.Entity.Standard;
+import pl.sda.finalproject.travelagency.hotel.entity.HotelsEntity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 @Getter
@@ -38,6 +40,8 @@ public class TripEntity {
     private int tripLength;
 
 
+    @Column(name = "prom")
+    private boolean prom;
 
     private String longDescription;
 
@@ -48,6 +52,12 @@ public class TripEntity {
     private String shortDescription;
     @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate endDate;
+
+    private String uuid;
+
+    @ManyToMany
+    @Column(name = "hotels")
+    private Set<HotelsEntity> hotelsEntitySet;
 
     @Column(name = "trip_cost")
     private int tripCost;
@@ -60,8 +70,7 @@ public class TripEntity {
 
 
 
-
-//    public long getTripLength() {
+    //    public long getTripLength() {
 //        return TimeUnit.DAYS.convert(
 //                Math.abs(getEndDate().getTime()- getBeginingDate().getTime()), TimeUnit.MILLISECONDS) + 1;
 //    }
@@ -71,10 +80,19 @@ public class TripEntity {
 
 
 
-    private String uuid;
+
 
     public TripEntity setId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public boolean isProm() {
+        return prom;
+    }
+
+    public TripEntity setProm(boolean prom) {
+        this.prom = prom;
         return this;
     }
 

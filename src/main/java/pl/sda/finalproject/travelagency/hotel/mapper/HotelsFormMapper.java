@@ -11,7 +11,7 @@ public class HotelsFormMapper {
 
     public static HotelsEntity map(HotelsForm hotelsForm){
         return new HotelsEntity()
-                .setAdress(hotelsForm.getAdress())
+
                 .setStandard(hotelsForm.getStandard())
                 .setCapacity(hotelsForm.getCapacity())
                 .setCity(hotelsForm.getCity())

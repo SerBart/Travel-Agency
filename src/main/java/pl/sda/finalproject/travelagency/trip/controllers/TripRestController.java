@@ -1,5 +1,8 @@
 package pl.sda.finalproject.travelagency.trip.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
@@ -7,10 +10,12 @@ import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
 import pl.sda.finalproject.travelagency.Entity.Country;
 import pl.sda.finalproject.travelagency.trip.dto.TripDto;
 import pl.sda.finalproject.travelagency.trip.dto.TripForm;
+import pl.sda.finalproject.travelagency.trip.repositories.TripRepository;
 import pl.sda.finalproject.travelagency.trip.service.TripService;
 import io.swagger.annotations.Api;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @Api(tags = "Trip API")
@@ -18,12 +23,6 @@ public class TripRestController {
 
     @Autowired
     TripService tripService;
-
-//    @PostMapping("/")
-//    public String trip(Model model){
-//        model.addAttribute();
-//        return "admin-register.html";
-//    }
 
     @GetMapping(value = "/api/trip")
     public List<TripDto> getTrips() {

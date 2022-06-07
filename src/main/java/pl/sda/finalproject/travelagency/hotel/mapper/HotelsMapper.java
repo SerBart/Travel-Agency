@@ -8,20 +8,19 @@ import java.util.stream.Collectors;
 
 public class HotelsMapper {
 
-    public static HotelsEntity map(HotelsDto hotelsDto){
-        return new HotelsEntity()
-                .setCountry(hotelsDto.getCountry())
-                .setStandard(hotelsDto.getStandard())
-                .setRooms(hotelsDto.getRooms())
-                .setCapacity(hotelsDto.getCapacity())
-                .setAdress(hotelsDto.getAdress())
-                .setCity(hotelsDto.getCity())
-                .setHotelStandard(hotelsDto.getStandard())
-                .setUuid(hotelsDto.getUuid());
+    public static HotelsDto map(HotelsEntity hotelsEntity){
+        return new HotelsDto()
+                .setCountry(hotelsEntity.getCountry())
+                .setStandard(hotelsEntity.getStandard())
+                .setRooms(hotelsEntity.getRooms())
+                .setCapacity(hotelsEntity.getCapacity())
+                .setCity(hotelsEntity.getCity())
+                .setStandard(hotelsEntity.getStandard())
+                .setUuid(hotelsEntity.getUuid());
     }
 
-    public static List<HotelsEntity> map(List<HotelsDto> hotelsDtoList){
-        return hotelsDtoList.stream()
+    public static List<HotelsDto> map(List<HotelsEntity> hotelsEntities){
+        return hotelsEntities.stream()
                 .map(HotelsMapper::map)
                 .collect(Collectors.toList());
     }

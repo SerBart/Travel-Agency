@@ -27,6 +27,8 @@ public interface TripRepository extends JpaRepository<TripEntity, Long>, JpaSpec
     List<TripEntity> getAllByCountryOfArrival(Country countryOfArrival);
     List<TripEntity> getAllByCityOfArrival(CityOfArrival cityOfArrival);
     List<TripEntity> getAllByCityOfDepartureAndCityOfArrival(CityOfDeparture cityOfDeparture, CityOfArrival cityOfArrival);
+
+    List<TripEntity> getAllByPromIsTrue();
 //    List<TripEntity> getAllByTripLength(Date beginingDate, Date endDate);
 //    List<TripEntity> getAllByCityOfArrival(CityOfDeparture cityOfDepartureOfArrival);
 }

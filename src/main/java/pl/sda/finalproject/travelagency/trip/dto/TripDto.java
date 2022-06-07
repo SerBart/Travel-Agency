@@ -34,6 +34,7 @@ public class TripDto {
 
     private LocalDate beginingDate;
 
+    private boolean prom;
 
     private LocalDate endDate;
 
@@ -49,5 +50,8 @@ public class TripDto {
 
     private List<HotelsEntity> hotelsEntity;
 
+    public boolean isProm() {
+        return prom;
+    }
 
 }

@@ -5,6 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
+import pl.sda.finalproject.travelagency.Entity.Country;
 import pl.sda.finalproject.travelagency.Entity.HotelRoomEntity;
 import pl.sda.finalproject.travelagency.Entity.Standard;
 
@@ -27,9 +29,9 @@ public class HotelsDto {
 
     private String adress;
 
-    private String country;
+    private Country country;
 
-    private String city;
+    private CityOfArrival city;
 
     private Set<HotelRoomEntity> rooms;
 

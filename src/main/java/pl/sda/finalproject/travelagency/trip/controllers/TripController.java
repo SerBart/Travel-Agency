@@ -1,13 +1,9 @@
 package pl.sda.finalproject.travelagency.trip.controllers;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
 import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
 import pl.sda.finalproject.travelagency.Entity.Country;
@@ -28,13 +24,20 @@ public class TripController {
     @Autowired
     private TripService tripService;
 
-    @GetMapping("/trip")
+        @GetMapping("/trip")
+        public String redirect(Model model){
+            return "redirect:/trip/page/1?sortField=tripCost&sortDir=asc";
+        }
+
+    @GetMapping("/trip/page/1?sortField=shortDescription&sortDir=desc")
     public String list(Model model) {
         model.addAttribute("trips", tripService.findAll());
         model.addAttribute("citiesOfDeparture", CityOfDeparture.values());
         model.addAttribute("citiesOfArrival", CityOfArrival.values());
         model.addAttribute("standards", Standard.values());
-        return "trip/index.html";
+        model.addAttribute("cityOfDeparture", CityOfDeparture.values());
+//        model.addAttribute("tripCost" )
+        return findPaginated(1, "tripCost", "asc", model) ;
     }
 
     @PostMapping(value = "/trip/search")
@@ -46,6 +49,7 @@ public class TripController {
             @ModelAttribute("standard") Standard standard,
             @ModelAttribute("tripLength") String tripLength,
             Model model) {
+
         TripSearchCriteria tripSearchCriteria = TripSearchCriteria.builder()
 //                .beginingDate(beginingDate)
 //                .endDate(endDate)
@@ -57,9 +61,10 @@ public class TripController {
         model.addAttribute("citiesOfArrival", CityOfArrival.values());
         model.addAttribute("citiesOfDeparture", CityOfDeparture.values());
         model.addAttribute("standards", Standard.values());
+
         List<TripEntity> trips = new ArrayList<>();
         model.addAttribute("trips", tripService.findAll(tripSearchCriteria));
-        return "trip/index.html";
+        return "trip/index";
     }
 //    @GetMapping("/trip/cityofarrival/{cityOfArrival}")
 //    public String list(@PathVariable ("cityOfArrival") CityOfArrival cityOfArrival, Model model) {
@@ -102,6 +107,29 @@ public class TripController {
         model.addAttribute("cityOfArrival", CityOfArrival.values());
         model.addAttribute("standard", Standard.values());
         return "trip/details.html";
+    }
+
+    @GetMapping("/trip/page/{pageNo}")
+    public String findPaginated(@PathVariable (value = "pageNo") int pageNo
+            , @RequestParam("sortField") String sortField
+            , @RequestParam("sortDir") String sortDir
+            , Model model){
+        int pageSize = 5;
+        Page<TripEntity> page = tripService.findPaginated(pageNo, pageSize, sortField, sortDir);
+        List<TripEntity> listTrips = page.getContent();
+        model.addAttribute("currentPage", pageNo);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("trips", tripService.findPaginated(pageNo, pageSize, sortField, sortDir));
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
+        model.addAttribute("citiesOfDeparture", CityOfDeparture.values());
+        model.addAttribute("citiesOfArrival", CityOfArrival.values());
+        model.addAttribute("standards", Standard.values());
+        model.addAttribute("listTrips", listTrips);
+
+        return "trip/index";
     }
 
     @GetMapping("/trip/{uuid}/delete")

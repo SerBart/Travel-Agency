@@ -1,5 +1,6 @@
 package pl.sda.finalproject.travelagency.trip.mappers;
 
+import org.springframework.data.domain.Page;
 import pl.sda.finalproject.travelagency.trip.dto.TripDto;
 import pl.sda.finalproject.travelagency.trip.entity.TripEntity;
 
@@ -33,4 +34,5 @@ return new TripDto()
                 .map(TripMapper::map)
                 .collect(Collectors.toList());
     }
+
 }

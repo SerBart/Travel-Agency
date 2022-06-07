@@ -6,6 +6,10 @@
     <title>Trips</title></title>
     <link href="/bootstrap.min.css" rel="stylesheet">
     <link href="/trip.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
 </head>
 <body>
 
@@ -48,7 +52,8 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name="cityOfDeparture" class="form-control" onsubmit="submit()" style="width: 200px;"/>
+                                    <select name="cityOfDeparture" class="form-control" onsubmit="submit()"
+                                            style="width: 200px;"/>
                                     <option th:each="cityOfDeparture: ${citiesOfDeparture}"
                                             th:text="${cityOfDeparture.name}"
                                             th:value="${cityOfDeparture}">
@@ -56,25 +61,25 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <select name = "standard" class = "form-control" onsubmit="submit()"/>
-                                    <option th:each = "standard: ${standards}"
-                                            th:text = "${standard.name}"
-                                            th:value = "${standard}">
+                                    <select name="standard" class="form-control" onsubmit="submit()"/>
+                                    <option th:each="standard: ${standards}"
+                                            th:text="${standard.name}"
+                                            th:value="${standard}">
                                     </option>
                                     </select>
                                 </td>
                                 <td>
-                                    <input name = "tripLength" type="text" class="form-control"  onsubmit="submit()" />
+                                    <input name="tripLength" type="text" class="form-control" onsubmit="submit()"/>
                                 </td>
 
-<!--                                <td>-->
-<!--                                    <input type="date" onsubmit="submit()" class="form-control" name="beginingDate" />-->
-<!--                                </td>-->
-<!--                                <td>-->
+                                <!--                                <td>-->
+                                <!--                                    <input type="date" onsubmit="submit()" class="form-control" name="beginingDate" />-->
+                                <!--                                </td>-->
+                                <!--                                <td>-->
 
-<!--                                    <input type="date" onsubmit="submit()" class="form-control" name="endDate"/>-->
-<!--                                </td>-->
-<!--                                <td>-->
+                                <!--                                    <input type="date" onsubmit="submit()" class="form-control" name="endDate"/>-->
+                                <!--                                </td>-->
+                                <!--                                <td>-->
                                 <td>
                                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                                 </td>
@@ -95,12 +100,21 @@
         </table>
 
         <div class="table-responsive">
-            <table class="table table-striped table-sm">
+            <table border="1" class="table table-striped table-responsive-md">
                 <thead>
                 <tr>
-                    <th></th>
-                    <th scope="col">Opis</th>
-                    <th scope="col">Cena</th>
+                    <th>
+
+                    </th>
+                    <th>
+                        <a th:href="@{'/trip/page/' + ${currentPage} + '?sortField=shortDescription&sortDir=' + ${reverseSortDir}}">
+                            Opis</a>
+                    </th>
+                    <th>
+                        <a th:href="@{'/trip/page/' + ${currentPage} + '?sortField=tripCost&sortDir=' + ${reverseSortDir}}">
+                            Cena</a>
+
+                    <th> Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -112,7 +126,9 @@
                                  height="100">
                         </a>
                     </td>
-                    <td style="text-align:left" th:text="${trip.shortDescription}">...</td>
+                    <a th:href="@{/trip/{uuid}/(uuid=${trip.uuid})}">
+                         <td style="text-align:left" th:text="${trip.shortDescription}">...</td>
+                    </a>
                     <td style="text-align:left" th:text="${trip.tripCost}">...</td>
                     <td>
                         <form th:action="@{/trip/{uuid}/delete/(uuid=${trip.uuid})}" method="POST">
@@ -124,6 +140,35 @@
                 </tbody>
             </table>
         </div>
+        <table>
+            <tr>
+                <div th:if="${totalPages > 1}">
+                    <div class="row col-sm-10">
+                        <div class="col-sm-2">
+                            Total rows: [[${totalItems}]]
+                        </div>
+                        <div class="col-sm-1">
+                            <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+                                <a th:if="${currentPage != i}" th:href="@{'/trip/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+                                <span th:unless="${currentPage != i}">[[${i}]]</span>  &nbsp; &nbsp;
+					</span>
+                        </div>
+                        <div class = "col-sm-1">
+                            <a th:if="${currentPage < totalPages}" th:href="@{'/trip/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+                            <span th:unless="${currentPage < totalPages}">Next</span>
+                        </div>
+                        <div class="col-sm-1">
+                            <a th:if="${currentPage < totalPages}" th:href="@{'/trip/page/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+                            <span th:unless="${currentPage < totalPages}">Last</span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </tr>
+            <tr></tr>
+        </table>
+
     </main>
 
 </div>

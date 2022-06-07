@@ -1,7 +1,9 @@
 package pl.sda.finalproject.travelagency.trip.service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
@@ -17,7 +19,6 @@ import pl.sda.finalproject.travelagency.hotel.repositories.HotelsRepository;
 import pl.sda.finalproject.travelagency.trip.repositories.TripRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Service
 public class TripService {
@@ -59,11 +60,19 @@ public class TripService {
     }
 
 
-    @Cacheable
     public List<TripDto> findAll() {
         List<TripEntity> tripEntities = tripRepository.findAll();
         return TripMapper.map(tripEntities);
     }
+
+    public Page<TripEntity> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
+        Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
+                Sort.by(sortField).descending();
+
+        Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
+        return this.tripRepository.findAll(pageable);
+    }
+
 
     public List<TripDto> findByCityOfDepartureAndCityOfArrival(CityOfDeparture cityOfDeparture, CityOfArrival cityOfArrival){
         List<TripEntity> tripEntities = tripRepository.getAllByCityOfDepartureAndCityOfArrival(cityOfDeparture, cityOfArrival);
@@ -134,6 +143,7 @@ public class TripService {
         TripEntity entity = tripRepository.getByUuid(uuid);
         tripRepository.delete(entity);
     }
+
 
 
 

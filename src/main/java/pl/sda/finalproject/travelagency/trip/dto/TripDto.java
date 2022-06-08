@@ -5,11 +5,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
-import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
-import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
-import pl.sda.finalproject.travelagency.Entity.Country;
+import pl.sda.finalproject.travelagency.Entity.*;
 import pl.sda.finalproject.travelagency.hotel.entity.HotelsEntity;
-import pl.sda.finalproject.travelagency.Entity.Standard;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
@@ -49,6 +46,8 @@ public class TripDto {
     private CityOfArrival cityOfArrival;
 
     private List<HotelsEntity> hotelsEntity;
+
+    private Continent continent;
 
     public boolean isProm() {
         return prom;

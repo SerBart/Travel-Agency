@@ -11,6 +11,7 @@ public class TripFormMapper {
 
     public static TripEntity map(TripForm tripForm) {
         return new TripEntity()
+                .setContinent(tripForm.getContinent())
                 .setProm(tripForm.isProm())
                 .setShortDescription(tripForm.getShortDescription())
                 .setLongDescription(tripForm.getLongDescription())

@@ -27,6 +27,15 @@ public class TripController {
 
 //    @Autowired
 //    private HotelsService hotelsService;
+    @GetMapping("/trip/main")
+    public String redirectToMainSite(Model model){
+        model.addAttribute("citiesOfDeparture", CityOfDeparture.values());
+        model.addAttribute("citiesOfArrival", CityOfArrival.values());
+        model.addAttribute("standards", Standard.values());
+        model.addAttribute("cityOfDeparture", CityOfDeparture.values());
+        model.addAttribute("tripsUpc", tripService.findUpcomingTrips());
+        return "trip/index.html";
+    }
 
         @GetMapping("/trip")
         public String redirect(Model model){
@@ -68,12 +77,12 @@ public class TripController {
 
         List<TripEntity> trips = new ArrayList<>();
         model.addAttribute("trips", tripService.findAll(tripSearchCriteria));
-        return "trip/index";
+        return "trip/tripsOffer";
     }
 //    @GetMapping("/trip/cityofarrival/{cityOfArrival}")
 //    public String list(@PathVariable ("cityOfArrival") CityOfArrival cityOfArrival, Model model) {
 //        model.addAttribute("tripsByArrival", tripService.findByCityOfArrival(cityOfArrival));
-//        return "trip/index.html";
+//        return "trip/tripsOffer.html";
 //    }
 
     @GetMapping("/trip-form")
@@ -140,7 +149,7 @@ public class TripController {
         model.addAttribute("standards", Standard.values());
         model.addAttribute("listTrips", listTrips);
 
-        return "trip/index";
+        return "trip/tripsOffer";
     }
 
     @GetMapping("/trip/{uuid}/delete")

@@ -6,10 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
-import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
-import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
-import pl.sda.finalproject.travelagency.Entity.Country;
-import pl.sda.finalproject.travelagency.Entity.Standard;
+import pl.sda.finalproject.travelagency.Entity.*;
 import pl.sda.finalproject.travelagency.trip.dto.TripDto;
 import pl.sda.finalproject.travelagency.trip.entity.TripEntity;
 import pl.sda.finalproject.travelagency.trip.dto.TripForm;
@@ -17,8 +14,14 @@ import pl.sda.finalproject.travelagency.trip.mappers.TripFormMapper;
 import pl.sda.finalproject.travelagency.trip.mappers.TripMapper;
 //import pl.sda.finalproject.travelagency.hotel.repositories.HotelsRepository;
 import pl.sda.finalproject.travelagency.trip.repositories.TripRepository;
+
+import java.time.Duration;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
 public class TripService {
@@ -57,6 +60,17 @@ public class TripService {
     public List<TripDto> findAll() {
         List<TripEntity> tripEntities = tripRepository.findAll();
         return TripMapper.map(tripEntities);
+    }
+
+    public List<TripDto> findUpcomingTrips(){
+        List<TripEntity> tripEntities = tripRepository.findAll();
+        List<TripEntity> values = new ArrayList<>();
+        for(TripEntity entity : tripEntities){
+            if(DAYS.between(LocalDate.now(), entity.getBeginingDate()) < 5){
+                values.add(entity);
+            }
+        }
+        return TripMapper.map(values);
     }
 
     public Page<TripEntity> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection) {
@@ -141,6 +155,11 @@ public class TripService {
 
     public List<TripDto> getAllByPromIsTrue() {
         List<TripEntity> tripEntities = tripRepository.getAllByPromIsTrue();
+        return TripMapper.map(tripEntities);
+    }
+
+    public List<TripDto> getAllByContinent(Continent continent){
+        List<TripEntity> tripEntities = tripRepository.getAllByContinent(continent);
         return TripMapper.map(tripEntities);
     }
 

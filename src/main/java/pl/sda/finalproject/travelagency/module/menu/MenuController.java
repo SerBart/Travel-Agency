@@ -16,7 +16,7 @@ public class MenuController {
     public String menu(Model model) {
         model.addAttribute("menu",menuService.getMenu());
 
-        return "index.html";
+        return "tripsOffer.html";
     }
 
 }

@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pl.sda.finalproject.travelagency.Entity.CityOfArrival;
 import pl.sda.finalproject.travelagency.Entity.CityOfDeparture;
+import pl.sda.finalproject.travelagency.Entity.Continent;
 import pl.sda.finalproject.travelagency.Entity.Country;
 import pl.sda.finalproject.travelagency.trip.dto.TripDto;
 import pl.sda.finalproject.travelagency.trip.entity.TripEntity;
@@ -27,8 +28,10 @@ public interface TripRepository extends JpaRepository<TripEntity, Long>, JpaSpec
     List<TripEntity> getAllByCountryOfArrival(Country countryOfArrival);
     List<TripEntity> getAllByCityOfArrival(CityOfArrival cityOfArrival);
     List<TripEntity> getAllByCityOfDepartureAndCityOfArrival(CityOfDeparture cityOfDeparture, CityOfArrival cityOfArrival);
-
+    List<TripEntity> getAllByContinent(Continent continent);
     List<TripEntity> getAllByPromIsTrue();
+
+//    List<TripEntity> getAllUpcomingTrips();
 //    List<TripEntity> getAllByTripLength(Date beginingDate, Date endDate);
 //    List<TripEntity> getAllByCityOfArrival(CityOfDeparture cityOfDepartureOfArrival);
 }

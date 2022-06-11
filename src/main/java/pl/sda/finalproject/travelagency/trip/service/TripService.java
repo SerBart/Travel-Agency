@@ -1,4 +1,5 @@
 package pl.sda.finalproject.travelagency.trip.service;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,11 +25,10 @@ import java.util.List;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
+@RequiredArgsConstructor
 public class TripService {
 
-
-    @Autowired
-    public TripRepository tripRepository;
+    private final TripRepository tripRepository;
 
 //    @Autowired
 //    public HotelsRepository hotelsRepository;
